@@ -4,6 +4,7 @@ import torch
 import torch.optim as optim
 import gym
 from models import QNet
+from torch import nn
 
 class DQNAgent:
     def __init__(self, state_size, action_size, lr, gamma, epsilon, epsilon_min, epsilon_decay, batch_size):
