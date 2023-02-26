@@ -1,6 +1,7 @@
 import numpy as np
 import gym
 from gym import spaces
+from torch import nn
 
 
 class DominoEnv(gym.Env):
