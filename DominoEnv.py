@@ -6,18 +6,24 @@ from gym import spaces
 class DominoEnv(gym.Env):
     def __init__(self):
         self.tiles = np.array([[i, j] for i in range(7) for j in range(i, 7)])
+        self.tile_ids = np.arange(len(self.tiles))
+        self.player1_tile_ids = None
+        self.player2_tile_ids = None
         self.player1_tiles = None
         self.player2_tiles = None
         self.board = []
         self.current_player = None
         self.done = False
 
-        self.action_space = spaces.Discrete(28)
+        self.action_space = spaces.Discrete(28+1) # last index for putting left or right
         self.observation_space = spaces.Box(low=0, high=1, shape=(56,))
 
     def reset(self):
-        self.player1_tiles = np.random.choice(self.tiles, size=7, replace=False)
-        self.player2_tiles = np.random.choice(np.setdiff1d(self.tiles, self.player1_tiles), size=7, replace=False)
+        self.player1_tile_ids = np.random.choice(self.tile_ids, size=7, replace=False)
+        self.player1_tiles = self.tiles[self.player1_tile_ids]
+
+        self.player2_tile_ids = np.random.choice(np.setdiff1d(self.tile_ids, self.player1_tile_ids), size=7, replace=False)
+        self.player2_tiles = self.tiles[self.player2_tile_ids]
         self.board = []
         self.current_player = 0
         self.done = False
@@ -25,6 +31,8 @@ class DominoEnv(gym.Env):
 
     def get_observation(self):
         obs = np.zeros(56)
+        
+
         for i, tile in enumerate(self.player1_tiles):
             obs[self.tile_to_index(tile, i)] = 1
         for i, tile in enumerate(self.player2_tiles):
