@@ -6,7 +6,7 @@ This project is aimed at finding the optimal strategy for playing dominoes throu
 
 Currently, this project is still under development, and the code and documentation are subject to change. The focus of the project is on implementing various reinforcement learning algorithms, such as Q-learning and SARSA, and evaluating their performance in the context of the domino game.
 
-The codebase for this project is written in Python and utilizes the popular reinforcement learning library, TensorFlow, along with other standard data science libraries such as NumPy and Pandas.
+The codebase for this project is written in Python and utilizes the popular reinforcement learning library, TensorFlow, along with other standard data science libraries such as OpenAI Gym.
 
 To get started with this project, please refer to the documentation included in the repository. This includes instructions on how to set up the project environment, how to run the code, and how to interpret the results.
 
